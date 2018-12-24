@@ -4,23 +4,24 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 
-import { counterReducer } from './counter.reducer';
 import { MyCounterComponent } from './my-counter/my-counter.component';
-import { ScoreboardComponent } from './scoreboard/scoreboard.component';
-import { scoreboardReducer } from './scoreboard.reducer';
+// import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { counterReducer } from './ngrx/counter.reducer';
+import { ScoreboardModule } from './modules/scoreboard/scoreboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyCounterComponent,
-    ScoreboardComponent
+    // ScoreboardComponent
   ],
   imports: [
     BrowserModule,
     StoreModule.forRoot({
       counter: counterReducer,
-      scoreboard: scoreboardReducer
-    })
+      // scoreboard: scoreboardReducer
+    }),
+    ScoreboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

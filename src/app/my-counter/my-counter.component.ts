@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { Increment, Decrement, Reset } from '../counter.action';
+import { Increment, Decrement, Reset } from '../ngrx/counter.action';
+// import { Increment, Decrement, Reset } from '../counter.action';
 
 @Component({
   selector: 'app-my-counter',

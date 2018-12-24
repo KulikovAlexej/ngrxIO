@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, State, select } from '@ngrx/store';
-import { ScoreboardState, IncrementHome, IncrementAway, Reset } from '../scoreboard-page.actions';
 import { Observable } from 'rxjs';
+import { ScoreboardState, IncrementHome, IncrementAway, Reset } from '../../../ngrx/scoreboard-page.actions';
 
 @Component({
   selector: 'app-scoreboard',
@@ -15,7 +15,7 @@ export class ScoreboardComponent implements OnInit {
   constructor(
     private scoreboardStore: Store<ScoreboardState>
   ) {
-    this.scoreboard$ = scoreboardStore.pipe(select('scoreboard'));
+    this.scoreboard$ = scoreboardStore.pipe(select('game'));
   }
 
   ngOnInit() {
