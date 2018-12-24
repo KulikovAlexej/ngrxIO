@@ -1,0 +1,13 @@
+<p>
+  {{ (scoreboard$ | async)?.home }} : {{ (scoreboard$ | async)?.away }}
+</p>
+
+<div>Current Count: {{ count$ | async }}</div>
+
+<button (click)="incrementHome()">Decrement Home</button>
+
+<button (click)="incrementAway()">Decrement Away</button>
+
+<button (click)="resetScore()">Reset</button>
+
+

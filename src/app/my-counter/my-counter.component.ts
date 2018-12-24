@@ -16,7 +16,7 @@ export class MyCounterComponent implements OnInit {
     private store: Store<{counter: number}>
   ) {
     this.count$ = store.pipe(select('counter'));
-    const str = store.select('counter');
+    const str = store;
     // console.log(str);
     str.subscribe(
       data => {

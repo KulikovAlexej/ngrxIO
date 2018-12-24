@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 
 import { counterReducer } from './counter.reducer';
 import { MyCounterComponent } from './my-counter/my-counter.component';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { scoreboardReducer } from './scoreboard.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyCounterComponent
+    MyCounterComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,
     StoreModule.forRoot({
-      counter: counterReducer
+      counter: counterReducer,
+      scoreboard: scoreboardReducer
     })
   ],
   providers: [],
