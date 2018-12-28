@@ -1,4 +1,5 @@
 import * as Scoreboard from './scoreboard-page.actions';
+import { createSelector } from '@ngrx/store';
 
 
 export const initialState: Scoreboard.ScoreboardState = {
@@ -12,24 +13,32 @@ export function scoreboardReducer(
 ): Scoreboard.ScoreboardState {
     switch (action.type) {
         case Scoreboard.ActionTypes.IncrementHome:
-            console.log('IncrementHome');
             return {
                 ...state,
                 home: state.home + 1
             };
         case Scoreboard.ActionTypes.IncrementAway:
-            console.log('IncrementAway');
             return {
                 ...state,
                 away: state.away + 1
             };
         case Scoreboard.ActionTypes.Reset:
-            console.log('Reset');
             return action.payload;
         default:
-            console.log('hmmm');
             return state;
     }
 }
+
+export const getHome = (state: Scoreboard.ScoreboardState) => state.home;
+export const getAway = (state: Scoreboard.ScoreboardState) => state.away;
+export const getScoreboard = (state: Scoreboard.ScoreboardState) => state;
+
+export const commonReducers = {
+    getScoreboard,
+    getHome,
+    getAway,
+    scoreboardReducer
+};
+
 
 
