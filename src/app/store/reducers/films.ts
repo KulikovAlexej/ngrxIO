@@ -35,14 +35,16 @@ export const initialState: State = {
 };
 
 export function reducer(state = initialState,
-    action: filmAction.Action) {
+    action: filmAction.Action): State {
     switch (action.type) {
         case filmAction.ADD_ONE: {
+            console.log(action.payload);
+            console.log(state.films);
             const newFilm: Film = action.payload;
             return {
                 ...state,
                 ids: [...state.ids, newFilm.id],
-                films: { ...state.films, newFilm }
+                // films: { ...state.films, newFilm }
             };
         }
         case filmAction.SELECT: {
