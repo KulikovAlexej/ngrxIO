@@ -3,14 +3,23 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
+import { FilmListComponent } from './components/film-list/film-list.component';
+import { FilmItemComponent } from './components/film-item/film-item.component';
+import { FilmSelectedComponent } from './components/film-selected/film-selected.component';
+
+import { reducers, metaReducers } from './store/reducers';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FilmListComponent,
+    FilmItemComponent,
+    FilmSelectedComponent,
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
   ],
   providers: [],
   bootstrap: [AppComponent]
