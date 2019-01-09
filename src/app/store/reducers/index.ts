@@ -4,13 +4,16 @@ import {
 } from '@ngrx/store';
 
 import * as fromFilms from './films';
+import * as fromComments from './comments';
 
 export interface State {
-    films: fromFilms.State;
+    films: fromFilms.FilmsState;
+    comments: fromComments.CommentsState;
 }
 
 export const reducers: ActionReducerMap<State> = {
-    films: fromFilms.reducer
+    films: fromFilms.reducer,
+    comments: fromComments.reducer
 };
 
 export function logger(reducer: ActionReducer<State>):
@@ -23,7 +26,8 @@ export function logger(reducer: ActionReducer<State>):
 }
 export const metaReducers: MetaReducer<State>[] = [logger];
 
-export const getFilmState = createFeatureSelector<fromFilms.State>('films');
+export const getFilmState = createFeatureSelector<fromFilms.FilmsState>('films');
+export const getCommentsState = createFeatureSelector<fromComments.CommentsState>('comments');
 
 export const getIds = createSelector(
     getFilmState,
@@ -46,10 +50,16 @@ export const getSelectedFilm = createSelector(
         };
     }
 );
+
 export const getAllFilms = createSelector(
     getIds,
     getFilms,
     (ids, films) => {
         return ids.map(id => films[id]);
     }
+);
+
+export const getAllComments = createSelector(
+    getCommentsState,
+    fromComments.getAllComments
 );

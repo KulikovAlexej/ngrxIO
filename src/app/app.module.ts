@@ -8,6 +8,7 @@ import { FilmItemComponent } from './components/film-item/film-item.component';
 import { FilmSelectedComponent } from './components/film-selected/film-selected.component';
 
 import { reducers, metaReducers } from './store/reducers';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { reducers, metaReducers } from './store/reducers';
     FilmListComponent,
     FilmItemComponent,
     FilmSelectedComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,

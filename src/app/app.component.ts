@@ -16,9 +16,12 @@ export class AppComponent {
 
   films$: Observable<Film[]>;
   selected$: Observable<any>;
+  comments$: Observable<any>;
+
   constructor(private store: Store<fromRoot.State>) {
     this.films$ = store.select(fromRoot.getAllFilms);
     this.selected$ = store.select(fromRoot.getSelectedFilm);
+    this.comments$ = store.select(fromRoot.getAllComments);
   }
   onSelect(id: number) {
     this.store.dispatch(new filmAction.Select(id));

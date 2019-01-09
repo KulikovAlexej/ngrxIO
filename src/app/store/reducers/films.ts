@@ -2,12 +2,12 @@ import { Action } from '@ngrx/store';
 import * as filmAction from '../actions/films';
 import { Film } from '../../models/film';
 
-export interface State {
+export interface FilmsState {
     ids: number[];
     films: { [id: number]: Film };
     selected: number;
 }
-export const initialState: State = {
+export const initialState: FilmsState = {
     ids: [1, 2, 3],
     films: {
         1: {
@@ -35,11 +35,9 @@ export const initialState: State = {
 };
 
 export function reducer(state = initialState,
-    action: filmAction.Action): State {
+    action: filmAction.Action): FilmsState {
     switch (action.type) {
         case filmAction.ADD_ONE: {
-            console.log(action.payload);
-            console.log(state.films);
             const newFilm: Film = action.payload;
             return {
                 ...state,
@@ -59,6 +57,6 @@ export function reducer(state = initialState,
     }
 }
 
-export const getIds = (state: State) => state.ids;
-export const getFilms = (state: State) => state.films;
-export const getSelected = (state: State) => state.selected;
+export const getIds = (state: FilmsState) => state.ids;
+export const getFilms = (state: FilmsState) => state.films;
+export const getSelected = (state: FilmsState) => state.selected;
