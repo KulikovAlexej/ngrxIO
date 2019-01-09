@@ -10,7 +10,10 @@ import { Film } from '../../models/film';
     <img src="{{film.img}}" alt="film image">
   </div>
   `,
-  styles: []
+  styles: [`img {
+    width: 200px;
+    height: 100px;
+  }`]
 })
 export class FilmSelectedComponent implements OnInit {
 

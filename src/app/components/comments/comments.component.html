@@ -2,5 +2,5 @@
   comments works!
 </p>
 <ul>
-  <li *ngFor="let comment of comments">{{comment.description}}</li>
+  <li *ngFor="let comment of comments" (click)="deleteComment(comment)">{{comment.description}}</li>
 </ul>

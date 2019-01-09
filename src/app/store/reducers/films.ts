@@ -42,7 +42,6 @@ export function reducer(state = initialState,
             return {
                 ...state,
                 ids: [...state.ids, newFilm.id],
-                // films: { ...state.films, newFilm }
             };
         }
         case filmAction.SELECT: {

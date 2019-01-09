@@ -63,3 +63,16 @@ export const getAllComments = createSelector(
     getCommentsState,
     fromComments.getAllComments
 );
+
+export const getCurrentFilmId = createSelector(
+    getCommentsState,
+    fromComments.getFilmId
+);
+
+export const getCurrentComments = createSelector(
+    getCurrentFilmId,
+    getAllComments,
+    (id, comments) => {
+        return comments.filter(comment => comment.filmId === id);
+    }
+);

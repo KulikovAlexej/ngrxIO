@@ -10,6 +10,7 @@
   </app-film-selected>
   <app-comments
     [comments]="comments$ | async"
+    (OnDelete)="deleteComment($event)"
   ></app-comments>
 </main>
 

@@ -4,7 +4,6 @@ import { Comment } from '../../models/comment';
 export interface CommentsState {
     allComments: Comment[];
     selectedFilmId: number;
-    currentFilmsIds: number[];
 }
 
 export const initialState: CommentsState = {
@@ -46,8 +45,7 @@ export const initialState: CommentsState = {
             author: 'Alex_Kulikov'
         }
     ],
-    selectedFilmId: 1,
-    currentFilmsIds: [1, 4, 6]
+    selectedFilmId: null
 };
 
 export function reducer(
@@ -56,18 +54,24 @@ export function reducer(
 ) {
     switch (action.type) {
         case commentsAction.ADD_COMMENT: {
-            // const comment: Comment = action.payload;
-            console.log(action);
-            console.log('ADD_COMMENT');
+            const comment: Comment = action.payload;
             return {
-                ...state
+                ...state,
+                allComments: [...state.allComments, comment]
             };
         }
         case commentsAction.DELETE_COMMENT: {
-            console.log(action);
-            console.log('DELETE_COMMENT');
+            const deletedComment: Comment = action.payload;
             return {
-                ...state
+                ...state,
+                allComments: state.allComments.filter(comment => comment.id !== deletedComment.id)
+            };
+        }
+        case commentsAction.SELECT_FILM: {
+            const filmId: number = action.payload;
+            return {
+                ...state,
+                selectedFilmId: filmId
             };
         }
         default:
@@ -76,3 +80,5 @@ export function reducer(
 }
 
 export const getAllComments = (state: CommentsState) => state.allComments;
+export const getFilmId = (state: CommentsState) => state.selectedFilmId;
+// export const getCommentsByFilm = (state: CommentsState) => state.allComments.filter(comment => comment.filmId === state.selectedFilmId);
