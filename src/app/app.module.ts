@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
 import { FilmListComponent } from './components/film-list/film-list.component';
@@ -9,6 +10,7 @@ import { FilmSelectedComponent } from './components/film-selected/film-selected.
 
 import { reducers, metaReducers } from './store/reducers';
 import { CommentsComponent } from './components/comments/comments.component';
+import { FilmEffects } from './store/effects/films.effect';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { CommentsComponent } from './components/comments/comments.component';
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([FilmEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

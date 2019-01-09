@@ -27,7 +27,8 @@ export class AppComponent implements OnInit {
   }
   onSelect(id: number) {
     this.store.dispatch(new filmAction.Select(id));
-    this.store.dispatch(new commentAction.SelectFilm(id));
+    // this.store.dispatch(new commentAction.SelectFilm(id));
+    // selectFilm(id) должен выполняться видимо в эффекте по уму
   }
 
   deleteComment(comment) {
