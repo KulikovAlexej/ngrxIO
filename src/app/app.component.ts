@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Film } from './models/film';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import * as fromRoot from './store/reducers';
 import * as filmAction from './store/actions/films';
@@ -19,16 +19,16 @@ export class AppComponent implements OnInit {
   films$: Observable<Film[]>;
   selected$: Observable<any>;
   comments$: Observable<any>;
+  abc: Observable<any>;
 
   constructor(private store: Store<fromRoot.State>) {
-    this.films$ = store.select(fromRoot.getAllFilms);
-    this.selected$ = store.select(fromRoot.getSelectedFilm);
-    this.comments$ = store.select(fromRoot.getCurrentComments);
+    this.films$ = store.pipe(select(fromRoot.getAllFilms));
+    this.selected$ = store.pipe(select(fromRoot.getSelectedFilm));
+    this.comments$ = store.pipe(select(fromRoot.getCurrentComments));
+
   }
   onSelect(id: number) {
     this.store.dispatch(new filmAction.Select(id));
-    // this.store.dispatch(new commentAction.SelectFilm(id));
-    // selectFilm(id) должен выполняться видимо в эффекте по уму
   }
 
   deleteComment(comment) {
