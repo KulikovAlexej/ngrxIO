@@ -5,15 +5,18 @@ import {
 
 import * as fromFilms from './films';
 import * as fromComments from './comments';
+import * as fromUsers from './users';
 
 export interface State {
     films: fromFilms.FilmsState;
     comments: fromComments.CommentsState;
+    users: fromUsers.UsersState;
 }
 
 export const reducers: ActionReducerMap<State> = {
     films: fromFilms.reducer,
-    comments: fromComments.reducer
+    comments: fromComments.reducer,
+    users: fromUsers.reducer
 };
 
 export function logger(reducer: ActionReducer<State>):
@@ -28,6 +31,7 @@ export const metaReducers: MetaReducer<State>[] = [logger];
 
 export const getFilmState = createFeatureSelector<fromFilms.FilmsState>('films');
 export const getCommentsState = createFeatureSelector<fromComments.CommentsState>('comments');
+export const getUsersState = createFeatureSelector<fromUsers.UsersState>('users');
 
 export const getIds = createSelector(
     getFilmState,
@@ -75,4 +79,19 @@ export const getCurrentComments = createSelector(
     (id, comments) => {
         return comments.filter(comment => comment.filmId === id);
     }
+);
+
+export const getUsersLoading = createSelector(
+    getUsersState,
+    fromUsers.getLoadingStatus
+);
+
+export const getUsers = createSelector(
+    getUsersState,
+    fromUsers.getUsers
+);
+
+export const getSelectedUser = createSelector(
+    getUsersState,
+    fromUsers.getSelectedUser
 );

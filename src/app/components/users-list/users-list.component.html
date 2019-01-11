@@ -1,0 +1,11 @@
+<p>
+  users-list works!
+</p>
+
+<ul>
+  <li *ngFor="let user of users$ | async" (click)="selectUser(user)">
+    {{ user.name }}
+  </li>
+</ul>
+
+<app-selected-user></app-selected-user>

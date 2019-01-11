@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Film } from '../../models/film';
+import { PlaceholdersService } from '../../services/placeholders.service';
+import { COMPONENT_FACTORY_RESOLVER } from '@angular/core/src/render3/ng_module_ref';
 
 @Component({
   selector: 'app-film-list',
@@ -25,9 +27,14 @@ export class FilmListComponent implements OnInit {
   @Input() label: string;
   @Output() select = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private placeholderService: PlaceholdersService
+  ) { }
 
   ngOnInit() {
+    // this.placeholderService.getUsers().subscribe(
+    //   data => console.log(data)
+    // );
   }
 
 }

@@ -6,7 +6,9 @@ import { Store, select } from '@ngrx/store';
 import * as fromRoot from './store/reducers';
 import * as filmAction from './store/actions/films';
 import * as commentAction from './store/actions/comments';
+import * as usersAction from './store/actions/users';
 import { Comment } from './models/comment';
+import { UsersState } from './store/reducers/users';
 
 @Component({
   selector: 'app-root',
@@ -19,13 +21,12 @@ export class AppComponent implements OnInit {
   films$: Observable<Film[]>;
   selected$: Observable<any>;
   comments$: Observable<any>;
-  abc: Observable<any>;
+
 
   constructor(private store: Store<fromRoot.State>) {
     this.films$ = store.pipe(select(fromRoot.getAllFilms));
     this.selected$ = store.pipe(select(fromRoot.getSelectedFilm));
     this.comments$ = store.pipe(select(fromRoot.getCurrentComments));
-
   }
   onSelect(id: number) {
     this.store.dispatch(new filmAction.Select(id));
@@ -42,8 +43,7 @@ export class AppComponent implements OnInit {
         description: 'Комментарий №4 к фильму Interstellar',
         author: 'Alex_Kulikov'
     };
-    setTimeout(() => {
-      this.store.dispatch(new commentAction.AddComment(comment));
-    }, 5000);
+    this.store.dispatch(new commentAction.AddComment(comment));
+    this.store.dispatch(new usersAction.UsersLoading());
   }
 }
